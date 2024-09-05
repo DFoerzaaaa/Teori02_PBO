@@ -1,0 +1,11 @@
+public class teknisi {
+    private String nama_teknisi;
+
+    public String getNama_teknisi() {
+        return nama_teknisi;
+    }
+
+    public void setNama_teknisi(String nama_teknisi) {
+        this.nama_teknisi = nama_teknisi;
+    }
+}
