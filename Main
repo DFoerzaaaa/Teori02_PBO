@@ -1,0 +1,80 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        // Membuat daftar barang
+        ArrayList<barang> daftarbarang = new ArrayList<>();
+
+        barang barang1 = new barang();
+        barang1.setKode_barang("B001");
+        barang1.setNama_barang("PC");
+        barang1.setJumlah_barang("25");
+        barang1.setJenis_barang("Elektronik");
+
+        barang barang2 = new barang();
+        barang2.setKode_barang("B002");
+        barang2.setNama_barang("Proyektor");
+        barang2.setJumlah_barang("10");
+        barang2.setJenis_barang("Elektronik");
+
+        barang barang3 = new barang();
+        barang3.setKode_barang("B003");
+        barang3.setNama_barang("Meja");
+        barang3.setJumlah_barang("50");
+        barang3.setJenis_barang("Furnitur");
+
+        // Menambahkan barang ke daftar
+        daftarbarang.add(barang1);
+        daftarbarang.add(barang2);
+        daftarbarang.add(barang3);
+
+        // Menampilkan daftar barang
+        System.out.println("Daftar Barang di Teknisi JTK:");
+        for (int i = 0; i < daftarbarang.size(); i++) {
+            barang barang = daftarbarang.get(i);
+            System.out.println((i + 1) + ". " + barang.getNama_barang() + " (Jumlah: " + barang.getJumlah_barang() + ")");
+        }
+
+        // Input data peminjam
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("\nMasukkan Nama : ");
+        String nama = scanner.nextLine();
+        System.out.print("\nMasukkan NIM: ");
+        String nim = scanner.nextLine();
+        System.out.print("\nMasukkan Kelas: ");
+        String kelas = scanner.nextLine();
+        System.out.print("\nMasukkan Prodi: ");
+        String prodi = scanner.nextLine();
+
+        // Memilih barang yang ingin dipinjam
+        System.out.print("Pilih nomor barang yang ingin dipinjam: ");
+        int pilihanBarang = scanner.nextInt();
+
+        if (pilihanBarang < 1 || pilihanBarang > daftarbarang.size()) {
+            System.out.println("Pilihan tidak valid.");
+            return;
+        }
+
+        barang barangDipinjam = daftarbarang.get(pilihanBarang - 1);
+
+        // Memasukkan jumlah barang yang ingin dipinjam
+        System.out.print("Masukkan jumlah barang yang ingin dipinjam: ");
+        int jumlahDipinjam = scanner.nextInt();
+
+        // Memeriksa apakah jumlah barang mencukupi
+        if (Integer.parseInt(barangDipinjam.getJumlah_barang()) < jumlahDipinjam) {
+            System.out.println("Jumlah barang tidak mencukupi.");
+            return;
+        }
+
+        // Menampilkan informasi peminjaman
+        System.out.println("\nInformasi Peminjaman:");
+        System.out.println("Nama : " + nama);
+        System.out.println("NIM : " + nim);
+        System.out.println("Kelas : " + kelas);
+        System.out.println("Prodi : " + prodi);
+        System.out.println("Barang yang Dipinjam: " + barangDipinjam.getNama_barang());
+        System.out.println("Jumlah yang Dipinjam: " + jumlahDipinjam);
+    }
+}
